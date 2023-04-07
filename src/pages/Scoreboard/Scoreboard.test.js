@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 import { render, screen, fireEvent } from "@testing-library/react";
 import Scoreboard from "./Scoreboard";
 
@@ -67,5 +68,41 @@ describe("Scoreboard", () => {
     const match = screen.queryByText("Brazil 0 - 0 Argentina");
     expect(match).not.toBeInTheDocument();
   });
+
+  test("summary of games in progress ordered by total score and start time", () => {
+    render(<Scoreboard />);
+    const homeTeamInput = screen.getByLabelText("Home Team:");
+    const awayTeamInput = screen.getByLabelText("Away Team:");
+    const startMatchButton = screen.getByText("Start New Match");
+  
+    // Add first match
+    fireEvent.change(homeTeamInput, { target: { value: "Team A" } });
+    fireEvent.change(awayTeamInput, { target: { value: "Team B" } });
+    fireEvent.click(startMatchButton);
+  
+    // Update scores for first match
+    const homeScoreButton = screen.getByText("Home Goal");
+    const awayScoreButton = screen.getByText("Away Goal");
+    fireEvent.click(homeScoreButton);
+    fireEvent.click(homeScoreButton);
+    fireEvent.click(awayScoreButton);
+  
+    // Add second match
+    fireEvent.change(homeTeamInput, { target: { value: "Team C" } });
+    fireEvent.change(awayTeamInput, { target: { value: "Team D" } });
+    fireEvent.click(startMatchButton);
+  
+    // Update scores for second match
+    const secondMatchHomeScoreButton = screen.getAllByText("Home Goal")[1];
+    const secondMatchAwayScoreButton = screen.getAllByText("Away Goal")[1];
+    fireEvent.click(secondMatchHomeScoreButton);
+    fireEvent.click(secondMatchAwayScoreButton);
+    fireEvent.click(secondMatchAwayScoreButton);
+  
+    const summaryItems = screen.getByText("Summary").parentElement.getElementsByTagName("li");
+    expect(summaryItems[0]).toHaveTextContent("Team C 1 - 2 Team D");
+    expect(summaryItems[1]).toHaveTextContent("Team A 2 - 1 Team B");
+  });
+  
 
 });
