@@ -1,0 +1,103 @@
+.scoreboard {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.scoreboard h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.scoreboard label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.scoreboard input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.scoreboard button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.scoreboard button:hover {
+  background-color: #3e8e41;
+}
+
+.scoreboard button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.scoreboard .match {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.scoreboard .match .teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.scoreboard .match .teams .team {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.scoreboard .match .score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 10px 10px 0;
+}
+
+.scoreboard .match .score span {
+  margin: 0 10px;
+}
+
+.scoreboard .match .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scoreboard .summary {
+  margin-top: 20px;
+}
+
+.scoreboard .summary h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.scoreboard .summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scoreboard .summary li {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
